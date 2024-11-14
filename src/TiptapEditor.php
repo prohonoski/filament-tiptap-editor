@@ -54,8 +54,9 @@ class TiptapEditor extends Field implements CanBeLengthConstrainedContract
 
     protected string $view = 'filament-tiptap-editor::tiptap-editor';
 
-    protected function refreshTemporaryURL(string $html): string {
-        $refres_html = $html;
+    protected function refreshTemporaryURL(string|null $html): string {
+        
+        $refres_html = $html??'';
         $identificador = $this->getDisk() . '\/temp\/' . $this->getDirectory();
         $pattern = '/<img src="([^"]*\/'.$identificador.'[^"]*)"/';
         preg_match_all($pattern, $html, $matches);
